@@ -1,10 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
 import { POKEMON_LIST } from './pokemon-list';
 import { Pokemon } from './pokemon.model';
+import { PokemonBorder } from './pokemon-border';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [],
+  imports: [PokemonBorder, DatePipe],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
