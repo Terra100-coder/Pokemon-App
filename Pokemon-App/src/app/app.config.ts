@@ -3,10 +3,20 @@ import { provideRouter, Routes } from '@angular/router';
 import { PokemonList } from './pokemon/pokemon-list/pokemon-list';
 import { PokemonProfile } from './pokemon/pokemon-profile/pokemon-profile';
 import { PageNotFound } from './page-not-found/page-not-found';
+import { PokemonEdit } from './pokemon/pokemon-edit/pokemon-edit';
 
 
 const routes: Routes = [
-  {path: 'pokemons/:id', component: PokemonProfile, title: 'Pokemon'},
+  {
+    path: 'pokemons/edit/:id',
+    component: PokemonEdit,
+    title: "Edition d'un pokemon",
+  },
+  {
+    path: 'pokemons/:id',
+    component: PokemonProfile,
+    title: 'Pokemon',
+  },
   {path: 'pokemons', component: PokemonList, title: 'Pokedex'},
   {path: '', redirectTo: '/pokemons', pathMatch: 'full'},
   {path: '**', component: PageNotFound},
