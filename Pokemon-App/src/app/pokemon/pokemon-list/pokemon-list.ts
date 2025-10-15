@@ -4,18 +4,21 @@ import { Pokemon } from '../../pokemon.model';
 import { PokemonBorder } from '../../pokemon-border';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-pokemon-list',
   imports: [PokemonBorder, DatePipe, RouterLink],
   templateUrl: './pokemon-list.html',
-  styles: ``
+  styles: `.pokemon-card { cursor: pointer }`
 })
 export class PokemonList {
 
   readonly #pokemonService = inject(PokemonService);
   readonly searchTerm = signal('');
-  pokemonList = signal(this.#pokemonService.getPokemonList());
+  pokemonList = toSignal(this.#pokemonService.getPokemonList(), {
+    initialValue: [],
+  });
 
   readonly pokemonListFiltered = computed(() => {
     const pokemonList = this.pokemonList();
@@ -23,6 +26,8 @@ export class PokemonList {
 
     return pokemonList.filter((pokemon) => pokemon.name.toLowerCase().includes(searchTerm.trim().toLowerCase()));
   });
+
+  readonly loading = computed(() => this.pokemonList().length === 0);
 
   size (pokemon: Pokemon) {
     if (pokemon.life <= 15) {
@@ -34,14 +39,6 @@ export class PokemonList {
     }
 
     return 'Moyen';
-  }
-
-  incrementLife(pokemon: Pokemon) {
-    pokemon.life = pokemon.life + 1;
-  }
-
-  decrementLife(pokemon: Pokemon) {
-    pokemon.life = pokemon.life - 1;
   }
 
 }
