@@ -4,10 +4,20 @@ import { PokemonList } from './pokemon/pokemon-list/pokemon-list';
 import { PokemonProfile } from './pokemon/pokemon-profile/pokemon-profile';
 import { PageNotFound } from './page-not-found/page-not-found';
 import { PokemonEdit } from './pokemon/pokemon-edit/pokemon-edit';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { AuthGuard } from './core/auth/auth.guard';
 import { Login } from './login/login';
+import { PokemonAdd } from './pokemon/pokemon-add/pokemon-add';
+import { PokemonService } from './pokemon.service';
+import { environment } from '../environments/environment';
+import { PokemonLocalStorageService } from './pokemon-local-storage.service';
+import { PokemonJSONServerService } from './pokemon-json-server.service';
 
+export function pokemonServiceFactory(): PokemonService {
+  return environment.production
+    ? new PokemonLocalStorageService()
+    : new PokemonJSONServerService();
+}
 
 const routes: Routes = [
   {
@@ -19,7 +29,12 @@ const routes: Routes = [
     path: 'pokemons',
     canActivateChild: [AuthGuard],
     children: [
-      {
+  {
+    path: 'add',
+    component: PokemonAdd,
+    title: "Ajout d'un pokémon"
+  },
+  {
     path: 'edit/:id',
     component: PokemonEdit,
     title: "Edition d'un pokemon",
@@ -29,10 +44,11 @@ const routes: Routes = [
     component: PokemonProfile,
     title: 'Pokemon',
   },
-  { path: '',
+  {
+    path: '',
     component: PokemonList,
     title: 'Pokedex',
-  }
+  },
     ]
   },
   {path: '', redirectTo: '/pokemons', pathMatch: 'full'},
@@ -45,6 +61,10 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient()
+    provideHttpClient(),
+    {
+      provide: PokemonService,
+      useFactory: pokemonServiceFactory,
+    },
   ]
 };

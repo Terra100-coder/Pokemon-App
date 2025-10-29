@@ -9,7 +9,7 @@ export interface Pokemon {
   created: Date;
 }
 
-export type pokemonList = Pokemon[];
+export type PokemonArray = Pokemon[];
 
 export const POKEMON_RULES = {
   NAME_PATTERN: /^[a-zA-Zéè]+$/,

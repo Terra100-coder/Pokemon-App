@@ -1,6 +1,7 @@
-import { pokemonList } from "./pokemon.model"
+import { PokemonArray } from "./pokemon.model";
 
-export const POKEMON_LIST: pokemonList = [
+
+export const POKEMON_LIST: PokemonArray = [
   {
     id: 1,
     name: 'Bulbizarre',
