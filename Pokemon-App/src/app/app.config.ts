@@ -4,7 +4,7 @@ import { PokemonList } from './pokemon/pokemon-list/pokemon-list';
 import { PokemonProfile } from './pokemon/pokemon-profile/pokemon-profile';
 import { PageNotFound } from './page-not-found/page-not-found';
 import { PokemonEdit } from './pokemon/pokemon-edit/pokemon-edit';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { AuthGuard } from './core/auth/auth.guard';
 import { Login } from './login/login';
 import { PokemonAdd } from './pokemon/pokemon-add/pokemon-add';
