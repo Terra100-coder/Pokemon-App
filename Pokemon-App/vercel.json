@@ -5,7 +5,7 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/Pokemon-App"
+        "distDir": "dist/Pokemon-App/browser"
       }
     }
   ],
