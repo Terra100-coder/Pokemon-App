@@ -9,7 +9,17 @@
       }
     }
   ],
+  "rewrites": [
+    {
+      "source": "/:path*",
+      "destination": "/index.html"
+    }
+  ],
   "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/(.*\\.(?:js|css|woff2?|ttf|png|jpg|ico|json))$",
+      "headers": { "cache-control": "public,max-age=31536000,immutable" },
+      "continue": true
+    }
   ]
 }
