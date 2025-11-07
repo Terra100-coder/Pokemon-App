@@ -1,16 +1,18 @@
 {
   "version": 2,
-  "public": false,
   "builds": [
     {
-      "src": "dist/Pokemon-App/browser/**/*",
-      "use": "@vercel/static"
+      "src": "angular.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist/Pokemon-App/browser"
+      }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/dist/Pokemon-App/browser/index.html"
+      "dest": "/index.html"
     }
   ]
 }
