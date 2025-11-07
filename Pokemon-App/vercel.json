@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "public": false,
   "builds": [
     {
       "src": "dist/Pokemon-App/browser/**/*",
@@ -9,7 +10,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/dist/Pokemon-App/browser/index.html"
     }
   ]
 }
