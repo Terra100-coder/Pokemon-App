@@ -1,25 +1,9 @@
 {
   "version": 2,
   "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/Pokemon-App/browser"
-      }
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "destination": "/index.html"
-    }
+    { "src": "angular.json", "use": "@vercel/angular" }
   ],
   "routes": [
-    {
-      "src": "/(.*\\.(?:js|css|woff2?|ttf|png|jpg|ico|json))$",
-      "headers": { "cache-control": "public,max-age=31536000,immutable" },
-      "continue": true
-    }
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
